@@ -5,7 +5,8 @@ var canvasOffset;
 var offsetX;
 var offsetY;
 
-// start Onload
+var isDrawing = false;
+
 canvas = document.getElementById("canvas");
 ctx = canvas.getContext("2d");
 
@@ -15,25 +16,37 @@ offsetY = canvasOffset.top;
 
 $("#canvas").on('mousedown', function (e) {
     handleMouseDown(e);
+}).on('mouseup', function(e) {
+    handleMouseUp();
+}).on('mousemove', function(e) {
+    handleMouseMove(e);
 });
-// end Onload
 
-var isDrawing = false;
+
 var startX;
 var startY;
 
-function handleMouseDown(e) {
-	var	mouseX = parseInt(e.clientX - offsetX);
-	var mouseY = parseInt(e.clientY - offsetY);
+function handleMouseUp() {
+	isDrawing = false;
+	canvas.style.cursor = "default";
+}
 
-	if (!isDrawing) {
-		canvas.style.cursor = "crosshair";
-		startX = mouseX;
-		startY = mouseY;
-	} else {
+function handleMouseMove(e) {
+	if (isDrawing) {
+		var mouseX = parseInt(e.clientX - offsetX);
+		var mouseY = parseInt(e.clientY - offsetY);
+
+		ctx.clearRect(0, 0, canvas.width, canvas.height);
+		ctx.beginPath();
 		ctx.rect(startX, startY, mouseX - startX, mouseY - startY);
 		ctx.stroke();
-		canvas.style.cursor = "default";
+
 	}
-	isDrawing = !isDrawing; // Inverting
+}
+
+function handleMouseDown(e) {
+	canvas.style.cursor = "crosshair";
+	isDrawing = true;
+	startX = parseInt(e.clientX - offsetX);
+	startY = parseInt(e.clientY - offsetY);
 }
