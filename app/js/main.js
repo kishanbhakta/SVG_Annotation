@@ -58,6 +58,7 @@ function handleMouseDown(e) {
 // End mouse drag collections
 
 // Have annotation menu options show and have a commit button to commit annotation and automatically save as png file
-function annotationMenuPopup(m) {
-  
+// First disable native context menu
+function annotationMenuPopup(e) {
+
 }
