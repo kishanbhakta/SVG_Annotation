@@ -35,7 +35,7 @@
 
 		function handleMouseUp() {
 		    isDrawing = false;
-		    alert("You've tried to open the context menu");
+		    // alert("You've tried to open the context menu");
 		    canvas.style.cursor = "default";
 		}
 
@@ -63,17 +63,15 @@
 
 // Start context menu
 
-// if (document.addEventListener) {
-//         document.addEventListener('contextmenu', function(e) {
-//             alert("You've tried to open context menu"); //here you draw your own menu
-//             e.preventDefault();
-//         }, false);
-//     } else {
-//         document.attachEvent('oncontextmenu', function() {
-//             alert("You've tried to open context menu");
-//             // window.event.returnValue = true;
-//         });
-//     }
+		var c = document.getElementById("canvas");
+		var ctx = c.getContext("2d");
+		ctx.strokeRect(5, 5, 25, 15);
+		ctx.scale(2, 2);
+		ctx.strokeRect(5, 5, 25, 15);
+		ctx.scale(2, 2);
+		ctx.strokeRect(5, 5, 25, 15);
+		ctx.scale(2, 2);
+		ctx.strokeRect(5, 5, 25, 15);
 
 // End context menu
 
